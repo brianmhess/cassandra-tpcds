@@ -11,9 +11,9 @@ select
   sum(case when (d_day_name = 'Friday') then ss_sales_price else null end) fri_sales,
   sum(case when (d_day_name = 'Saturday') then ss_sales_price else null end) sat_sales
 from
-  store_sales
-  join store on (store_sales.ss_store_sk = store.s_store_sk)
-  join date_dim on (store_sales.ss_sold_date_sk = date_dim.d_date_sk)
+  tpcds.store_sales store_sales
+  join tpcds.store store on (store_sales.ss_store_sk = store.s_store_sk)
+  join tpcds.date_dim date_dim on (store_sales.ss_sold_date_sk = date_dim.d_date_sk)
 where
   s_gmt_offset = -5
   and d_year = 1998

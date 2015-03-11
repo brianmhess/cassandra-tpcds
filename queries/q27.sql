@@ -9,11 +9,11 @@ select
   avg(ss_coupon_amt) agg3,
   avg(ss_sales_price) agg4
 from
-  store_sales
-  join store on (store_sales.ss_store_sk = store.s_store_sk)
-  join customer_demographics on (store_sales.ss_cdemo_sk = customer_demographics.cd_demo_sk)
-  join item on (store_sales.ss_item_sk = item.i_item_sk)
-  join date_dim on (store_sales.ss_sold_date_sk = date_dim.d_date_sk)
+  tpcds.store_sales store_sales
+  join tpcds.store store on (store_sales.ss_store_sk = store.s_store_sk)
+  join tpcds.customer_demographics customer_demographics on (store_sales.ss_cdemo_sk = customer_demographics.cd_demo_sk)
+  join tpcds.item item on (store_sales.ss_item_sk = item.i_item_sk)
+  join tpcds.date_dim date_dim on (store_sales.ss_sold_date_sk = date_dim.d_date_sk)
 where
   -- ss_date between '1998-01-01' and '1998-12-31'
   ss_sold_date_sk between 2450815 and 2451179  -- partition key filter

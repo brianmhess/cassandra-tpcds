@@ -5,9 +5,9 @@ select
   i_brand,
   sum(ss_ext_sales_price) ext_price
 from
-  store_sales
-  join item on (store_sales.ss_item_sk = item.i_item_sk)
-  join date_dim on (store_sales.ss_sold_date_sk = date_dim.d_date_sk)
+  tpcds.store_sales store_sales
+  join tpcds.item item on (store_sales.ss_item_sk = item.i_item_sk)
+  join tpcds.date_dim date_dim on (store_sales.ss_sold_date_sk = date_dim.d_date_sk)
 where
   i_manager_id = 36
   and d_moy = 12

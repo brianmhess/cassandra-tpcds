@@ -6,8 +6,8 @@ select
   i_category,
   sum(ss_ext_sales_price) as total_price
 from
-  store_sales
-  join item on (store_sales.ss_item_sk = item.i_item_sk)
+  tpcds.store_sales store_sales
+  join tpcds.item item on (store_sales.ss_item_sk = item.i_item_sk)
   join date_dim dt on (dt.d_date_sk = store_sales.ss_sold_date_sk)
 where
   item.i_manager_id = 1

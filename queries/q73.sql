@@ -13,9 +13,9 @@ from
     ss_customer_sk,
     count(*) cnt
   from
-    store_sales
-    join household_demographics on (store_sales.ss_hdemo_sk = household_demographics.hd_demo_sk)
-    join store on (store_sales.ss_store_sk = store.s_store_sk)
+    tpcds.store_sales store_sales
+    join tpcds.household_demographics household_demographics on (store_sales.ss_hdemo_sk = household_demographics.hd_demo_sk)
+    join tpcds.store store on (store_sales.ss_store_sk = store.s_store_sk)
     -- join date_dim on (store_sales.ss_sold_date_sk = date_dim.d_date_sk)
   where
     store.s_county in ('Saginaw County', 'Sumner County', 'Appanoose County', 'Daviess County')
@@ -40,7 +40,7 @@ from
     ss_ticket_number,
     ss_customer_sk
   ) dj
-  join customer on (dj.ss_customer_sk = customer.c_customer_sk)
+  join tpcds.customer customer on (dj.ss_customer_sk = customer.c_customer_sk)
 where
   cnt between 1 and 5
 order by

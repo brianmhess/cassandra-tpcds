@@ -13,10 +13,10 @@ from
     ss_customer_sk,
     count(*) cnt
   from
-    store_sales
-    join household_demographics on (store_sales.ss_hdemo_sk = household_demographics.hd_demo_sk)
-    join store on (store_sales.ss_store_sk = store.s_store_sk)
-    join date_dim on (store_sales.ss_sold_date_sk = date_dim.d_date_sk)
+    tpcds.store_sales store_sales
+    join tpcds.household_demographics household_demographics on (store_sales.ss_hdemo_sk = household_demographics.hd_demo_sk)
+    join tpcds.store store on (store_sales.ss_store_sk = store.s_store_sk)
+    join tpcds.date_dim date_dim on (store_sales.ss_sold_date_sk = date_dim.d_date_sk)
   where
     date_dim.d_year in (1998, 1998 + 1, 1998 + 2)
     and (date_dim.d_dom between 1 and 3
@@ -31,7 +31,7 @@ from
     ss_ticket_number,
     ss_customer_sk
   ) dn
-join customer on (dn.ss_customer_sk = customer.c_customer_sk)
+join tpcds.customer customer on (dn.ss_customer_sk = customer.c_customer_sk)
 where
   cnt between 15 and 20
 order by
