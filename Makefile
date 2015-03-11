@@ -88,5 +88,8 @@ load: store_sales customer_demographics date_dim time_dim item store customer pr
 
 
 
+clean:
+	- rm ${OUTDIR}/*
+
 
 
