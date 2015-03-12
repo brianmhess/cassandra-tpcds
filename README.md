@@ -22,20 +22,27 @@ git clone https://github.com/grahn/tpcds-kit.git
 cd tpcds-kit/tools
 make -f Makefile.suite
 ```
-4. Make the data.  You will need to update the Makefile
-with the desired TPCDS_SCALE_FACTOR.  It ships with the value
-1, which is only for development purposes.
+4. Build the Java loader
 ```
 cd ../../cassandra-tpcds
+make compile
+```
+5. Make the data.  You will need to update the Makefile
+with the desired TPCDS_SCALE_FACTOR.  It ships with the value
+1, which is only for development purposes.
+
+You will need to update the IP_ADDR in Makefile to be one of the endpoints
+for your Cassandra cluster.
+```
 make data
 ```
-5. Create the keyspace and tables in Cassandra
+6. Create the keyspace and tables in Cassandra
 ```
 make ddl
 ```
-6. Load the data into Cassandra
+7. Load the data into Cassandra
 ```
-make load
+make loadall
 ```
 
 ##Queries
