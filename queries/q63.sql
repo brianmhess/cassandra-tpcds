@@ -8,10 +8,10 @@ from
     sum(ss_sales_price) sum_sales
     -- avg(sum(ss_sales_price)) over(partition by i_manager_id) avg_monthly_sales
   from
-    tpcds.store_sales store_sales
-    join tpcds.item item on (store_sales.ss_item_sk = item.i_item_sk)
-    join tpcds.store store on (store_sales.ss_store_sk = store.s_store_sk)
-    join tpcds.date_dim date_dim on (store_sales.ss_sold_date_sk = date_dim.d_date_sk)
+    store_sales
+    join item on (store_sales.ss_item_sk = item.i_item_sk)
+    join store on (store_sales.ss_store_sk = store.s_store_sk)
+    join date_dim on (store_sales.ss_sold_date_sk = date_dim.d_date_sk)
   where
     ss_sold_date_sk between 2451911 and 2452275  -- partition key filter
     -- ss_date between '2001-01-01' and '2001-12-31'
@@ -39,4 +39,4 @@ order by
   sum_sales
 limit 100;
 -- end query 1 in stream 0 using template query63.tpl
-exit;
+--exit;

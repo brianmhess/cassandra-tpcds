@@ -11,5 +11,5 @@ select
   max(ss_addr_sk) as max_ss_addr_sk,
   max(ss_store_sk) as max_ss_store_sk,
   max(ss_promo_sk) as max_ss_promo_sk
-from tpcds.store_sales store_sales;
-exit;
+from store_sales;
+--exit;

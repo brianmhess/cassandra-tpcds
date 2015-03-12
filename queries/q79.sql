@@ -15,10 +15,10 @@ from
     sum(ss_coupon_amt) amt,
     sum(ss_net_profit) profit
   from
-    tpcds.store_sales store_sales
-    join tpcds.household_demographics household_demographics on (store_sales.ss_hdemo_sk = household_demographics.hd_demo_sk)
-    join tpcds.date_dim date_dim on (store_sales.ss_sold_date_sk = date_dim.d_date_sk)
-    join tpcds.store store on (store_sales.ss_store_sk = store.s_store_sk)
+    store_sales
+    join household_demographics on (store_sales.ss_hdemo_sk = household_demographics.hd_demo_sk)
+    join date_dim on (store_sales.ss_sold_date_sk = date_dim.d_date_sk)
+    join store on (store_sales.ss_store_sk = store.s_store_sk)
   where
     store.s_number_employees between 200 and 295
     and (household_demographics.hd_dep_count = 8
@@ -35,7 +35,7 @@ from
     ss_addr_sk,
     s_city
   ) ms
-  join tpcds.customer customer on (ms.ss_customer_sk = customer.c_customer_sk)
+  join customer on (ms.ss_customer_sk = customer.c_customer_sk)
 order by
   c_last_name,
   c_first_name,
@@ -44,4 +44,4 @@ order by
   profit
 limit 100;
 -- end query 1 in stream 0 using template query79.tpl
-exit;
+--exit;

@@ -35,8 +35,8 @@ from
       sum(case when(d_day_name = 'Friday') then ss_sales_price else null end) fri_sales,
       sum(case when(d_day_name = 'Saturday') then ss_sales_price else null end) sat_sales
     from
-      tpcds.store_sales store_sales
-      join tpcds.date_dim date_dim on (store_sales.ss_sold_date_sk = date_dim.d_date_sk)
+      store_sales
+      join date_dim on (store_sales.ss_sold_date_sk = date_dim.d_date_sk)
     where 
       -- ss_date between '1998-10-01' and '1999-09-30'
       ss_sold_date_sk between 2451088 and 2451452
@@ -44,8 +44,8 @@ from
       d_week_seq,
       ss_store_sk
     ) wss
-    join tpcds.store store on (wss.ss_store_sk = store.s_store_sk)
-    join tpcds.date_dim d on (wss.d_week_seq = d.d_week_seq)
+    join store on (wss.ss_store_sk = store.s_store_sk)
+    join date_dim d on (wss.d_week_seq = d.d_week_seq)
   where
     d_month_seq between 1185 and 1185 + 11
   ) y
@@ -74,8 +74,8 @@ from
       sum(case when(d_day_name = 'Friday') then ss_sales_price else null end) fri_sales,
       sum(case when(d_day_name = 'Saturday') then ss_sales_price else null end) sat_sales
     from
-      tpcds.store_sales store_sales
-      join tpcds.date_dim date_dim on (store_sales.ss_sold_date_sk = date_dim.d_date_sk)
+      store_sales
+      join date_dim on (store_sales.ss_sold_date_sk = date_dim.d_date_sk)
     where 
       -- ss_date between '1999-10-01' and '2000-09-30'
       ss_sold_date_sk between 2451088 and 2451452
@@ -83,7 +83,7 @@ from
       d_week_seq,
       ss_store_sk
     ) wss
-    join tpcds.store store on (wss.ss_store_sk = store.s_store_sk)
+    join store on (wss.ss_store_sk = store.s_store_sk)
     join date_dim d on (wss.d_week_seq = d.d_week_seq)
   where
     d_month_seq between 1185 + 12 and 1185 + 23
@@ -97,4 +97,4 @@ order by
   d_week_seq1
 limit 100;
 -- end query 1 in stream 0 using template query59.tpl
-exit;
+--exit;

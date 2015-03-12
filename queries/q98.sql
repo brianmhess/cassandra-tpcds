@@ -8,9 +8,9 @@ select
   sum(ss_ext_sales_price) as itemrevenue
   -- sum(ss_ext_sales_price) * 100 / sum(sum(ss_ext_sales_price)) over (partition by i_class) as revenueratio
 from
-  tpcds.store_sales store_sales
-  join tpcds.item item on (store_sales.ss_item_sk = item.i_item_sk)
-  join tpcds.date_dim date_dim on (store_sales.ss_sold_date_sk = date_dim.d_date_sk)
+  store_sales
+  join item on (store_sales.ss_item_sk = item.i_item_sk)
+  join date_dim on (store_sales.ss_sold_date_sk = date_dim.d_date_sk)
 where
   i_category in('Jewelry', 'Sports', 'Books')
   -- and d_date between cast('2001-01-12' as date) and (cast('2001-01-12' as date) + 30)

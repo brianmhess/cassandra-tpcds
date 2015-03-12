@@ -14,8 +14,8 @@ from
     ss_item_sk,
     sum(ss_sales_price) as revenue
   from
-    tpcds.store_sales store_sales
-    join tpcds.date_dim date_dim on (store_sales.ss_sold_date_sk = date_dim.d_date_sk)
+    store_sales
+    join date_dim on (store_sales.ss_sold_date_sk = date_dim.d_date_sk)
   where
     -- ss_date between '2001-01-01' and '2001-12-31'
     ss_sold_date_sk between 2451911 and 2452275  -- partition key filter
@@ -24,8 +24,8 @@ from
     ss_store_sk,
     ss_item_sk
   ) sc
-  join tpcds.item item on (sc.ss_item_sk = item.i_item_sk)
-  join tpcds.store store on (sc.ss_store_sk = store.s_store_sk)
+  join item on (sc.ss_item_sk = item.i_item_sk)
+  join store on (sc.ss_store_sk = store.s_store_sk)
   join 
   (select
     ss_store_sk,
@@ -37,8 +37,8 @@ from
       ss_item_sk,
       sum(ss_sales_price) as revenue
     from
-      tpcds.store_sales store_sales
-      join tpcds.date_dim date_dim on (store_sales.ss_sold_date_sk = date_dim.d_date_sk)
+      store_sales
+      join date_dim on (store_sales.ss_sold_date_sk = date_dim.d_date_sk)
     where
       -- ss_date between '2001-01-01' and '2001-12-31'
       ss_sold_date_sk between 2451911 and 2452275  -- partition key filter
@@ -57,4 +57,4 @@ order by
   i_item_desc 
 limit 100;
 -- end query 1 in stream 0 using template query65.tpl
-exit;
+--exit;

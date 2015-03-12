@@ -16,11 +16,11 @@ from
     sum(ss_coupon_amt) amt,
     sum(ss_net_profit) profit
   from
-    tpcds.store_sales store_sales
-    join tpcds.store store on (store_sales.ss_store_sk = store.s_store_sk)
-    join tpcds.household_demographics household_demographics on (store_sales.ss_hdemo_sk = household_demographics.hd_demo_sk)
-    join tpcds.date_dim date_dim on (store_sales.ss_sold_date_sk = date_dim.d_date_sk)
-    join tpcds.customer_address date_dim on (store_sales.ss_addr_sk = customer_address.ca_address_sk)
+    store_sales
+    join store on (store_sales.ss_store_sk = store.s_store_sk)
+    join household_demographics on (store_sales.ss_hdemo_sk = household_demographics.hd_demo_sk)
+    join date_dim on (store_sales.ss_sold_date_sk = date_dim.d_date_sk)
+    join customer_address on (store_sales.ss_addr_sk = customer_address.ca_address_sk)
   where
     store.s_city in ('Midway', 'Concord', 'Spring Hill', 'Brownsville', 'Greenville')
     and (household_demographics.hd_dep_count = 5
@@ -62,8 +62,8 @@ from
     ss_addr_sk,
     ca_city
   ) dn
-  join tpcds.customer customer on (dn.ss_customer_sk = customer.c_customer_sk)
-  join tpcds.customer_address current_addr on (customer.c_current_addr_sk = current_addr.ca_address_sk)
+  join customer on (dn.ss_customer_sk = customer.c_customer_sk)
+  join customer_address current_addr on (customer.c_current_addr_sk = current_addr.ca_address_sk)
 where
   current_addr.ca_city <> bought_city
 order by
@@ -74,4 +74,4 @@ order by
   ss_ticket_number 
 limit 100;
 -- end query 1 in stream 0 using template query46.tpl
-exit;
+--exit;

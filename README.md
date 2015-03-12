@@ -44,4 +44,14 @@ https://github.com/cloudera/impala-tpcds-kit/tree/master/queries-sql92-modified/
 
 They are queries 3, 7, 19, 27, 34, 42, 43, 46, 52, 53, 55, 59, 63, 65, 68, 73, 79, 89, 98, and ss_max.
 
-They have been slightly modified to reference database names, not just bare table names.
+A version which has been slightly modified to reference database names, not just bare table names, is in queries_full.
+
+To use these queries, run
+```
+dse spark
+use tpcds;
+source queries/q19.sql;
+```
+
+You can then do whichever query you want from within the Shark shell.
+
