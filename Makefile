@@ -1,5 +1,10 @@
 OUTDIR=out
 TPCDS_ROOT=../tpcds-kit
+# TPCDS_SCALE_FACTOR:
+#     1 is for development
+#     The official scale factors are: 100, 300, 1000, 3000,
+#                                     10000, 30000, 100000
+#     These represent numbers of GB (100 = 100GB)
 TPCDS_SCALE_FACTOR=1
 
 LIST = 1 2 3 4 5 6 7 8 9 10
